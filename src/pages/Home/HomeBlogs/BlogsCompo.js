@@ -3,7 +3,7 @@ import React from "react";
 import { Card, Col, Row } from "react-bootstrap";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const BlogsCompo = ({ loading, blogs }) => {
   const navigate = useNavigate();

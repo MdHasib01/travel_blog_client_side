@@ -30,7 +30,7 @@ const AddBlogs = () => {
     formData.append("imageTitle", imageTitle);
     formData.append("image", image);
 
-    fetch("http://localhost:8000/allblogs", {
+    fetch("https://still-oasis-67632.herokuapp.com/allblogs", {
       method: "POST",
       body: formData,
     })

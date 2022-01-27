@@ -2,14 +2,20 @@ import React, { useEffect, useState } from "react";
 import tipsBack from "../../../Assects/Top_Banner/h6-rev-slide-shape.png";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { useNavigate } from "react-router-dom";
 
 const TravelTips = () => {
   const [tips, setTips] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:8000/allblogs")
+    fetch("https://still-oasis-67632.herokuapp.com/allblogs")
       .then((res) => res.json())
       .then((data) => setTips(data));
   }, []);
+
+  const navigate = useNavigate();
+  const handleClick = (id) => {
+    navigate(`/blog_details/${id}`);
+  };
   return (
     <div className="container">
       <h2
@@ -65,7 +71,12 @@ const TravelTips = () => {
                       __html: tip.blogsDetails.slice(0, 250),
                     }}
                   ></p>
-                  <button className="primary-btn">Read More &#10132;</button>
+                  <button
+                    className="primary-btn"
+                    onClick={() => handleClick(tip._id)}
+                  >
+                    Read More &#10132;
+                  </button>
                 </div>
               </div>
             </div>
@@ -94,7 +105,12 @@ const TravelTips = () => {
                       __html: tip.blogsDetails.slice(0, 239),
                     }}
                   ></p>
-                  <button className="primary-btn">Read More &#10132;</button>
+                  <button
+                    className="primary-btn"
+                    onClick={() => handleClick(tip._id)}
+                  >
+                    Read More &#10132;
+                  </button>
                 </div>
               </div>
               <div className="col-md-6">

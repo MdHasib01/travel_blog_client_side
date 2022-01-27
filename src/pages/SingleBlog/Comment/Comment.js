@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 import StarIcon from "@mui/icons-material/Star";
+import useAuth from "../../../hooks/useAuth";
 
 const labels = {
   0.5: "Useless",
@@ -19,7 +20,7 @@ const labels = {
 const Comment = ({ blogId }) => {
   const [value, setValue] = React.useState(3);
   const [hover, setHover] = React.useState(-1);
-
+  const { user } = useAuth();
   const [comment, setComment] = useState("");
   const [success, setSuccess] = useState(false);
   const handleComment = (e) => {
@@ -28,9 +29,10 @@ const Comment = ({ blogId }) => {
       comment,
       blogId,
       value,
+      user,
     };
 
-    fetch("http://localhost:8000/comments", {
+    fetch("https://still-oasis-67632.herokuapp.com/comments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -52,7 +54,7 @@ const Comment = ({ blogId }) => {
   };
   const [showComments, setShowComments] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:8000/comments?blogId=${blogId}`)
+    fetch(`https://still-oasis-67632.herokuapp.com/comments?blogId=${blogId}`)
       .then((res) => res.json())
       .then((data) => setShowComments(data));
   }, [showComments]);
@@ -94,9 +96,28 @@ const Comment = ({ blogId }) => {
         <button type="submit">Comment</button>
       </form>
       <div>
-        <p>Comments({showComments.length})</p>
+        <p>
+          <b>Comments({showComments.length})</b>
+        </p>
+        <hr />
         {showComments.map((comments) => (
-          <div key={comments._id}>
+          <div
+            key={comments._id}
+            style={{ borderBottom: "1px solid gray", marginBottom: "10px" }}
+          >
+            {user.photoURL && (
+              <div className="d-flex align-items-center">
+                <img
+                  className="me-2"
+                  width="40"
+                  style={{ borderRadius: "50%", border: "1px solid gray" }}
+                  src={comments.user.photoURL}
+                  alt={comments.user.displayName}
+                />
+                <p>{comments.user.displayName}</p>
+              </div>
+            )}
+
             <p>{comments.comment}</p>
             <Rating name="read-only" value={comments.value} readOnly />
           </div>

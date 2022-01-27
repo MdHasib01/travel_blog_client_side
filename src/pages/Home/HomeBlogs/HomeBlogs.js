@@ -14,7 +14,7 @@ const HomeBlogs = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       setLoading(true);
-      await fetch("http://localhost:8000/allblogs")
+      await fetch("https://still-oasis-67632.herokuapp.com/allblogs")
         .then((res) => res.json())
         .then((data) => setBlogs(data));
       setLoading(false);
