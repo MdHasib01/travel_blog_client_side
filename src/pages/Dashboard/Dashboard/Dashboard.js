@@ -67,6 +67,20 @@ function Dashboard(props) {
         </ListItem>
         <ListItem>
           <ListItemIcon>
+            <DashboardCustomizeIcon />
+          </ListItemIcon>
+          <Link
+            className="dash-link"
+            style={{
+              fontWeight: "bold",
+            }}
+            to="/dashboard/user_blog_post"
+          >
+            <ListItemText primary="User Blog Post"></ListItemText>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
             <HomeRepairServiceOutlined />
           </ListItemIcon>
           <Link
@@ -77,6 +91,20 @@ function Dashboard(props) {
             to="/dashboard/Manage_blogs"
           >
             <ListItemText primary="Manage All Blogs"></ListItemText>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <HomeRepairServiceOutlined />
+          </ListItemIcon>
+          <Link
+            className="dash-link"
+            style={{
+              fontWeight: "bold",
+            }}
+            to="/dashboard/aprove_users_blog"
+          >
+            <ListItemText primary="Aprove User's Blogs"></ListItemText>
           </Link>
         </ListItem>
         <ListItem>

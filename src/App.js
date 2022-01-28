@@ -15,6 +15,8 @@ import ManageBlogs from "./pages/Dashboard/ManageBlogs/ManageBlogs";
 import MakeAdmin from "./pages/Dashboard/MakeAdmin/MakeAdmin";
 import UpdateBlogs from "./pages/Dashboard/UpdateBlogs/UpdateBlogs";
 import UpdateAllBlogs from "./pages/Dashboard/UpdateAllBlogs/UpdateAllBlogs";
+import UserBlogPost from "./pages/Dashboard/UserBlogPost/UserBlogPost";
+import AproveUserBlog from "./pages/Dashboard/AproveUserBlog/AproveUserBlog";
 
 function App() {
   return (
@@ -50,6 +52,14 @@ function App() {
                 element={<DashboardMain />}
               />
               <Route path="/dashboard/add_blogs" element={<AddBlogs />} />
+              <Route
+                path="/dashboard/user_blog_post"
+                element={<UserBlogPost />}
+              />
+              <Route
+                path="/dashboard/aprove_users_blog"
+                element={<AproveUserBlog />}
+              />
               <Route path="/dashboard/manage_blogs" element={<ManageBlogs />} />
               <Route path="/dashboard/make_admin" element={<MakeAdmin />} />
             </Route>

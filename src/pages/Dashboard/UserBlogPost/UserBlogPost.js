@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import TextEditor from "./TextEditor/TextEditor";
+import TextEditor from "../AddBlogs/TextEditor/TextEditor";
 import { Helmet } from "react-helmet";
-const AddBlogs = () => {
+import useAuth from "../../../hooks/useAuth";
+const UserBlogPost = () => {
   const [title, setTitle] = useState("");
   const [blogsDetails, setBlogsDetails] = useState("");
   const [category, setcategory] = useState("Adventure");
@@ -13,14 +14,16 @@ const AddBlogs = () => {
   const [image, setImage] = useState(null);
   const [success, setSuccess] = useState(false);
   const [cost, setCost] = useState("");
+  const { user } = useAuth();
   const rating = 0;
-
+  const checked = false;
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!image) {
       return;
     }
     const formData = new FormData();
+    formData.append("userEmail", user.email);
     formData.append("title", title);
     formData.append("blogsDetails", blogsDetails);
     formData.append("category", category);
@@ -28,11 +31,12 @@ const AddBlogs = () => {
     formData.append("blogger", blogger);
     formData.append("address", address);
     formData.append("cost", cost);
+    formData.append("checked", checked);
     formData.append("rating", rating);
     formData.append("imageTitle", imageTitle);
     formData.append("image", image);
 
-    fetch("https://still-oasis-67632.herokuapp.com/allblogs", {
+    fetch("https://still-oasis-67632.herokuapp.com/userblogs", {
       method: "POST",
       body: formData,
     })
@@ -53,10 +57,11 @@ const AddBlogs = () => {
   return (
     <div>
       <Helmet>
-        <title>Post a Blog</title>
+        <title>User Blog Post</title>
         <meta name="description" content={`Post a bloog`} />
       </Helmet>
       <Container>
+        <h3 className="text-center mb-5">Post as a user</h3>
         <form onSubmit={handleSubmit}>
           <label>Blgs Title: </label>
           <input
@@ -151,4 +156,4 @@ const AddBlogs = () => {
   );
 };
 
-export default AddBlogs;
+export default UserBlogPost;

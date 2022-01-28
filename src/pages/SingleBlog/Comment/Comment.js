@@ -105,18 +105,19 @@ const Comment = ({ blogId }) => {
             key={comments._id}
             style={{ borderBottom: "1px solid gray", marginBottom: "10px" }}
           >
-            {user.photoURL && (
-              <div className="d-flex align-items-center">
-                <img
-                  className="me-2"
-                  width="40"
-                  style={{ borderRadius: "50%", border: "1px solid gray" }}
-                  src={comments.user.photoURL}
-                  alt={comments.user.displayName}
-                />
-                <p>{comments.user.displayName}</p>
-              </div>
-            )}
+            <div className="d-flex align-items-center">
+              <img
+                className="me-2"
+                width="40"
+                style={{ borderRadius: "50%", border: "1px solid gray" }}
+                src={
+                  comments.user.photoURL ||
+                  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                }
+                alt={comments.user.displayName}
+              />
+              <p>{comments.user.displayName}</p>
+            </div>
 
             <p>{comments.comment}</p>
             <Rating name="read-only" value={comments.value} readOnly />

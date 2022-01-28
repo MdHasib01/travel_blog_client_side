@@ -26,6 +26,19 @@ const UpdateBlogs = () => {
     updateBlog.title = updateTitle;
     setBlog(updateBlog);
   };
+  const handleDetails = (e) => {
+    const updateDetails = e.target.value;
+    const updateBlog = { ...blog };
+    updateBlog.blogsDetails = updateDetails;
+    setBlog(updateBlog);
+  };
+  const handlCost = (e) => {
+    const updateCost = e.target.value;
+    const updateBlog = { ...blog };
+    updateBlog.cost = updateCost;
+    setBlog(updateBlog);
+  };
+
   const handleUpdate = () => {};
 
   if (loading) {
@@ -51,20 +64,26 @@ const UpdateBlogs = () => {
             <input type="text" onChange={handleTitle} value={blog.title} />
             <br />
             <br />
-            <p>Blgs Details </p>
-            <textarea type="text" onChange={handleTitle} value={blog.title} />
+            <p>Blgs Details: </p>
+            <textarea
+              rows="10"
+              cols="70"
+              type="text"
+              onChange={handleDetails}
+              value={blog.blogsDetails}
+            />
             <br />
             <br />
-            <label>Blgs Title: </label>
-            <input type="text" onChange={handleTitle} value={blog.title} />
+            <label>Cost of Travel: </label>
+            <input type="number" onChange={handlCost} value={blog.cost} />
             <br />
             <br />
-            <label>Blgs Title: </label>
-            <input type="text" onChange={handleTitle} value={blog.title} />
+            <label>Blogger's Name: </label>
+            <input type="text" onChange={handleTitle} value={blog.blogger} />
             <br />
             <br />
-            <label>Blgs Title: </label>
-            <input type="text" onChange={handleTitle} value={blog.title} />
+            <label>Location: </label>
+            <input type="text" onChange={handleTitle} value={blog.address} />
             <br />
             <br />
 
